@@ -11,6 +11,7 @@ class App extends Component {
 
   render() {
     return <div>
+	     <input type="text" />
 	     <button onClick={this.handleIncrease.bind(this)}></button>
 	     <button onClick={this.handleDecrease.bind(this)}></button>
 	   </div>

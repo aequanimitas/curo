@@ -20,7 +20,7 @@ describe('Single component', () => {
       expect(buttons.length).toEqual(2);
     });
 
-    it('should update the value when up button is clicked', () => {
+    it('should call function attached to props', () => {
       let renderer = TestUtils.createRenderer();
       let props = {
         increase: expect.createSpy(),
@@ -34,5 +34,21 @@ describe('Single component', () => {
       expect(props.decrease.calls.length).toBe(1);
     });
 
+  });
+
+  describe('input', () => {
+    function getInput(e) {
+      if (e.type === 'input') {
+        return e;
+      }
+    }
+
+    it('should exist', () => {
+      let renderer = TestUtils.createRenderer();
+      renderer.render(<App />);
+      let input = renderer.getRenderOutput().props.children.filter(getInput);
+      expect(Array.isArray(input)).toBe(true);
+      expect(input.length).toBe(1);
+    });
   });
 });
