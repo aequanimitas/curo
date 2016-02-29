@@ -9,7 +9,7 @@
   <div id="timer"></div>
   <script>
     function startTimer(duration, display) {
-      var timer = duration, minutes, seconds;
+      var timer = duration + 1, minutes, seconds;
       var show = setInterval(function() {
 	if (--timer < 0) {
           clearInterval(show);
