@@ -20,7 +20,7 @@ describe('Single component', () => {
       expect(buttons.length).toEqual(2);
     });
 
-    it.skip('should update the value when up button is clicked', () => {
+    it('should update the value when up button is clicked', () => {
       let renderer = TestUtils.createRenderer();
       let props = {
         increase: expect.createSpy(),
@@ -28,7 +28,10 @@ describe('Single component', () => {
       };
       renderer.render(<App {...props} />);
       let buttons = renderer.getRenderOutput().props.children.filter(getButtons);
-      buttons[0].props.increase();
+      buttons[0].props.onClick();
+      expect(props.increase.calls.length).toBe(1);
+      buttons[1].props.onClick();
+      expect(props.decrease.calls.length).toBe(1);
     });
 
   });

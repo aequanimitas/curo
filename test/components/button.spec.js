@@ -12,7 +12,6 @@ describe('Button component', () => {
     }
     renderer.render(<Button {...props} />);
     let button = renderer.getRenderOutput()
-    console.log(button);
     button.props.onClick();
     expect(props.unary.calls.length).toBe(1)
   });
