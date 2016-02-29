@@ -2,26 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
-  <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-  <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="node_modules/systemjs/dist/system.src.js"></script>
-  <script src="node_modules/rxjs/bundles/Rx.js"></script>
-  <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+  <title>Curo</title>
 </head>
-<script>
-  System.config({
-    packages: {
-      app: {
-        format: 'register',
-        defaultExtension: 'js'
-      }
-    }
-  });
-  System.import('app/boot').then(null, console.error.bind(console));
 </script>
 <body>
-  <my-app>Loading..</my-app>
+  <div id="timer"></div>
+  <script>
+    function startTimer(duration, display) {
+      var timer = duration, minutes, seconds;
+      var show = setInterval(function() {
+	if (--timer < 0) {
+          clearInterval(show);
+	} else {
+          minutes = parseInt(timer / 60, 10);
+	  seconds = parseInt(timer % 60, 10);
+	  minutes = minutes < 10 ? "0" + minutes : minutes;
+	  seconds = seconds < 10 ? "0" + seconds : seconds;
+	  display.textContent = minutes + ":" + seconds;
+	}
+      }, 1000);
+    }
+
+    window.onload = function() {
+      var fiveMinutes = 5 * 1,
+          display = document.querySelector('#timer');
+
+      startTimer(fiveMinutes, display);
+    }
+  </script>
 </body>
 </html>
